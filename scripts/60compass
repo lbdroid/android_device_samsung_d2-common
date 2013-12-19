@@ -1,4 +1,28 @@
 #!/system/bin/sh
 
-echo "300 0 0 0 300 0 0 0 300" > /sys/class/input/input4/static_matrix
+# geomagnetic
+chown system.input /sys/class/input/input3/data
+chown system.input /sys/class/input/input3/delay
+chown system.input /sys/class/input/input3/enable
+chown system.input /sys/class/input/input3/filter_enable
+chown system.input /sys/class/input/input3/filter_len
+chown system.input /sys/class/input/input3/filter_noise
+chown system.input /sys/class/input/input3/filter_threshold
+chown system.input /sys/class/input/input3/position
+chown system.input /sys/class/input/input3/wake
 
+# geomagnetic_raw
+chown compass.input /sys/class/input/input4/dynamic_matrix
+chown compass.input /sys/class/input/input4/offsets
+chown system.input /sys/class/input/input4/distortion
+chown system.input /sys/class/input/input4/ellipsoid_mode
+chown system.input /sys/class/input/input4/shape
+chown system.input /sys/class/input/input4/static_matrix
+
+# i2c
+chown system.system /dev/i2c-12
+chmod 0666 /dev/i2c-12
+
+# compass
+echo 0 > /sys/class/input/input4/ellipsoid_mode 0
+echo "10319 -477 45 -147 9510 171 -170 52 10187" > /sys/class/input/input4/static_matrix
